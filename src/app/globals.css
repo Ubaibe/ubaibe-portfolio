@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-primary-bg: #080B0F;
+  --color-secondary-bg: #0D1217;
+  --color-card: #11171D;
+  --color-elevated: #151B22;
+  --color-subtle-border: #222A33;
+  --color-hover-border: #34414D;
+  --color-primary-text: #E8EAED;
+  --color-secondary-text: #929AA5;
+  --color-muted-text: #5E6772;
+  --color-primary-accent: #55DDE0;
+  --color-secondary-accent: #8274FF;
+  --font-heading: var(--font-space-grotesk);
+  --font-body: var(--font-inter);
+}
+
+@layer base {
+  :root {
+    --background: #080B0F;
+    --foreground: #E8EAED;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+  }
+
+  ::selection {
+    background: rgba(85, 221, 224, 0.2);
+    color: #E8EAED;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid #55DDE0;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  .section-padding {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-top: 128px;
+      padding-bottom: 128px;
+    }
+  }
+}
