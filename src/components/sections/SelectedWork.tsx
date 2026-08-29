@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView, useReducedMotion } from "motion/react";
-import { useRef } from "react";
+import { useRef, useState, useLayoutEffect } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { projects } from "@/data/projects";
@@ -11,18 +11,22 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const shouldReduceMotion = useReducedMotion();
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useLayoutEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  const animate = shouldReduceMotion || isInView || hasMounted;
 
   const number = String(index + 1).padStart(2, "0");
-
-  const motionProps = shouldReduceMotion
-    ? { animate: { opacity: isInView ? 1 : 0 } }
-    : { initial: { opacity: 0, y: 24 }, animate: isInView ? { opacity: 1, y: 0 } : {} };
 
   return (
     <motion.div
       ref={ref}
-      {...motionProps}
-      transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const }}
+      initial={{ opacity: 1, y: 24 }}
+      animate={animate ? { opacity: 1, y: 0 } : { opacity: 1, y: 24 }}
+      transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] as const }}
     >
       <Link
         href={`/projects/${project.slug}`}

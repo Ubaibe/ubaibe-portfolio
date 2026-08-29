@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView, useReducedMotion } from "motion/react";
-import { useRef } from "react";
+import { useRef, useState, useLayoutEffect } from "react";
 
 const words = [
   { text: "AI", delay: 0 },
@@ -14,14 +14,21 @@ export function ScrollTypography() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const shouldReduceMotion = useReducedMotion();
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useLayoutEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  const animate = shouldReduceMotion || isInView || hasMounted;
 
   return (
     <section ref={ref} className="py-24 md:py-32 lg:py-40">
       <div className="mx-auto max-w-7xl px-6">
         <motion.p
-          initial={{ opacity: 0 }}
-          animate={shouldReduceMotion || isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 1 }}
+          animate={animate ? { opacity: 1 } : { opacity: 1 }}
+          transition={{ duration: 0.4 }}
           className="text-xs md:text-sm uppercase tracking-[0.14em] text-[#55DDE0] mb-12 md:mb-16"
         >
           I build with
@@ -31,11 +38,11 @@ export function ScrollTypography() {
           {words.map((word) => (
             <motion.h2
               key={word.text}
-              initial={{ opacity: 0, x: -30 }}
-              animate={shouldReduceMotion || isInView ? { opacity: 1, x: 0 } : {}}
+              initial={{ opacity: 1, x: 0 }}
+              animate={animate ? { opacity: 1, x: 0 } : { opacity: 1, x: -30 }}
               transition={{
-                duration: 0.7,
-                delay: shouldReduceMotion ? 0 : word.delay,
+                duration: 0.4,
+                delay: animate ? word.delay : 0,
                 ease: [0.25, 0.1, 0.25, 1] as const,
               }}
               className="text-[36px] md:text-[48px] lg:text-[64px] font-semibold tracking-tight text-[#E8EAED] leading-[1.1]"
