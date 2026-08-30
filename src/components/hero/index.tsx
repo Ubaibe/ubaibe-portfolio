@@ -7,6 +7,8 @@ import { TechnicalVisualization } from "./TechnicalVisualization";
 
 export function Hero() {
   const shouldReduceMotion = useReducedMotion();
+  const initial = shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 20 };
+  const animate = { opacity: 1, y: 0 };
 
   return (
     <section className="relative min-h-screen flex items-center pt-16">
@@ -14,8 +16,8 @@ export function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="max-w-2xl">
             <motion.p
-              initial={{ opacity: 1, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={initial}
+              animate={animate}
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
               className="text-xs md:text-sm uppercase tracking-[0.14em] text-[#55DDE0] mb-6 md:mb-8"
             >
@@ -23,8 +25,8 @@ export function Hero() {
             </motion.p>
 
             <motion.h1
-              initial={{ opacity: 1, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={initial}
+              animate={animate}
               transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] as const }}
               className="text-[44px] md:text-[72px] lg:text-[88px] font-semibold leading-[1.05] tracking-tight text-[#E8EAED] mb-8"
             >
@@ -32,8 +34,8 @@ export function Hero() {
             </motion.h1>
 
             <motion.div
-              initial={{ opacity: 1, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={initial}
+              animate={animate}
               transition={{ duration: 0.5, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] as const }}
               className="mb-10 md:mb-12"
             >
@@ -47,8 +49,8 @@ export function Hero() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 1, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={initial}
+              animate={animate}
               transition={{ duration: 0.5, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] as const }}
               className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             >

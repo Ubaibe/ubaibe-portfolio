@@ -1,34 +1,30 @@
 "use client";
 
 import { motion, useInView, useReducedMotion } from "motion/react";
-import { useRef, useState, useLayoutEffect } from "react";
+import { useRef } from "react";
 
 const words = [
   { text: "AI", delay: 0 },
-  { text: "WEB3", delay: 0.1 },
-  { text: "FINTECH", delay: 0.2 },
-  { text: "FULL-STACK", delay: 0.3 },
+  { text: "WEB3", delay: 0.08 },
+  { text: "FINTECH", delay: 0.16 },
+  { text: "FULL-STACK", delay: 0.24 },
 ];
 
 export function ScrollTypography() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const shouldReduceMotion = useReducedMotion();
-  const [hasMounted, setHasMounted] = useState(false);
 
-  useLayoutEffect(() => {
-    setHasMounted(true);
-  }, []);
-
-  const animate = shouldReduceMotion || isInView || hasMounted;
+  const initial = shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 1, x: -16 };
+  const animate = shouldReduceMotion || isInView ? { opacity: 1, x: 0 } : { opacity: 1, x: -16 };
 
   return (
     <section ref={ref} className="py-24 md:py-32 lg:py-40">
       <div className="mx-auto max-w-7xl px-6">
         <motion.p
-          initial={{ opacity: 1 }}
-          animate={animate ? { opacity: 1 } : { opacity: 1 }}
-          transition={{ duration: 0.4 }}
+          initial={initial}
+          animate={animate}
+          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
           className="text-xs md:text-sm uppercase tracking-[0.14em] text-[#55DDE0] mb-12 md:mb-16"
         >
           I build with
@@ -38,11 +34,11 @@ export function ScrollTypography() {
           {words.map((word) => (
             <motion.h2
               key={word.text}
-              initial={{ opacity: 1, x: 0 }}
-              animate={animate ? { opacity: 1, x: 0 } : { opacity: 1, x: -30 }}
+              initial={initial}
+              animate={animate}
               transition={{
-                duration: 0.4,
-                delay: animate ? word.delay : 0,
+                duration: 0.5,
+                delay: shouldReduceMotion ? 0 : word.delay,
                 ease: [0.25, 0.1, 0.25, 1] as const,
               }}
               className="text-[36px] md:text-[48px] lg:text-[64px] font-semibold tracking-tight text-[#E8EAED] leading-[1.1]"

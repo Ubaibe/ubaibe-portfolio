@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView, useReducedMotion } from "motion/react";
-import { useRef, useState, useLayoutEffect } from "react";
+import { useRef } from "react";
 
 export function Reveal({
   children,
@@ -13,22 +13,18 @@ export function Reveal({
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const shouldReduceMotion = useReducedMotion();
-  const [hasMounted, setHasMounted] = useState(false);
 
-  useLayoutEffect(() => {
-    setHasMounted(true);
-  }, []);
-
-  const animate = shouldReduceMotion || isInView || hasMounted;
+  const initial = shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 16 };
+  const animate = shouldReduceMotion || isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 16 };
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 1, y: 20 }}
-      animate={animate ? { opacity: 1, y: 0 } : { opacity: 1, y: 20 }}
+      initial={initial}
+      animate={animate}
       transition={{
-        duration: 0.4,
-        delay: animate && !isInView ? 0 : delay,
+        duration: 0.5,
+        delay,
         ease: [0.25, 0.1, 0.25, 1] as const,
       }}
     >
