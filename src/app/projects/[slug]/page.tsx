@@ -7,6 +7,7 @@ import { CaseStudySection } from "@/components/case-study/CaseStudySection";
 import { Architecture } from "@/components/case-study/Architecture";
 import { ProjectLinks } from "@/components/case-study/ProjectLinks";
 import { Reveal } from "@/components/case-study/Reveal";
+import { ProductScreenshot } from "@/components/case-study/ProductScreenshot";
 
 export async function generateStaticParams() {
   return [{ slug: "assetflow" }, { slug: "ai-invoiceflow" }, { slug: "forgeone-ai" }];
@@ -91,6 +92,17 @@ export default async function ProjectPage({
           </p>
         </CaseStudySection>
 
+        {project.screenshotHero && (
+          <div className="mx-auto max-w-7xl px-6">
+            <ProductScreenshot
+              src={project.screenshotHero}
+              alt="AssetFlow landing page showing AI-powered RWA invoice financing on BOT Chain"
+              caption="AssetFlow — product interface"
+              priority
+            />
+          </div>
+        )}
+
         <CaseStudySection label="04 / ENGINEERING" title="Engineering">
           <p>
             The application is built with Solidity smart contracts responsible for
@@ -110,6 +122,16 @@ export default async function ProjectPage({
             ))}
           </ul>
         </CaseStudySection>
+
+        {project.screenshotDashboard && (
+          <div className="mx-auto max-w-7xl px-6">
+            <ProductScreenshot
+              src={project.screenshotDashboard}
+              alt="AssetFlow borrower dashboard showing invoice upload and financing opportunities"
+              caption="Borrower dashboard — invoice-backed financing workflow"
+            />
+          </div>
+        )}
 
         <Architecture
           title="06 / SMART CONTRACT ARCHITECTURE"

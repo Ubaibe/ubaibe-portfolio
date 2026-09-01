@@ -21,6 +21,8 @@ export interface Project {
   projectType?: string;
   lessonsLearned?: string;
   images?: string[];
+  screenshotHero?: string;
+  screenshotDashboard?: string;
 }
 
 export const projects: Project[] = [
@@ -46,6 +48,8 @@ export const projects: Project[] = [
     ],
     testing: "53 tests passing",
     deployment: "Deployed and functional on BOT Chain testnet.",
+    screenshotHero: "/projects/assetflow/hero.png",
+    screenshotDashboard: "/projects/assetflow/borrower-dashboard.png",
   },
   {
     slug: "ai-invoiceflow",
