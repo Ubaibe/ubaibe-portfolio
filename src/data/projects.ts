@@ -78,6 +78,8 @@ export const projects: Project[] = [
     ],
     lessonsLearned:
       "Canton was intended as the privacy-preserving ledger component, but the integration was not successfully completed.",
+    screenshotHero: "/projects/ai-invoiceflow/marketplace.png",
+    screenshotDashboard: "/projects/ai-invoiceflow/command-center.png",
   },
   {
     slug: "forgeone-ai",

@@ -239,6 +239,17 @@ export default async function ProjectPage({
           </p>
         </CaseStudySection>
 
+        {project.screenshotHero && (
+          <div className="mx-auto max-w-7xl px-6 pb-16 md:pb-24">
+            <ProductScreenshot
+              src={project.screenshotHero}
+              alt="AI InvoiceFlow marketplace showing the invoice financing workflow"
+              caption="AI InvoiceFlow — Institutional Marketplace"
+              priority
+            />
+          </div>
+        )}
+
         <CaseStudySection label="04 / ENGINEERING" title="Engineering">
           <p>
             The application is built with a Flask backend and SQLAlchemy for data
@@ -259,6 +270,16 @@ export default async function ProjectPage({
             ))}
           </ul>
         </CaseStudySection>
+
+        {project.screenshotDashboard && (
+          <div className="mx-auto max-w-7xl px-6 pb-16 md:pb-24">
+            <ProductScreenshot
+              src={project.screenshotDashboard}
+              alt="AI InvoiceFlow command center showing underwriting and workflow management"
+              caption="AI InvoiceFlow — Institutional Command Center"
+            />
+          </div>
+        )}
 
         <CaseStudySection label="06 / PRIVACY ARCHITECTURE" title="Privacy Architecture">
           <p>

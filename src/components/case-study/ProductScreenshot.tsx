@@ -18,7 +18,7 @@ export function ProductScreenshot({
 }: ProductScreenshotProps) {
   return (
     <Reveal>
-      <figure className="mt-16 md:mt-24">
+      <figure>
         <div className="relative w-full border border-[#222A33] bg-[#0D1217] overflow-hidden">
           <Image
             src={src}
